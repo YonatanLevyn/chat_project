@@ -9,30 +9,21 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
-
-
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-MIME_TYPES = {
-    ".css": "text/css",
-}
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@4+finh8bp1&!9a*yk+46*pfe7^2#8k1f52ew63(5j(6q078=$'
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-default-key")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,14 +34,6 @@ INSTALLED_APPS = [
     'chat_app',
     'channels',
 ]
-# ...
-
-INTERNAL_IPS = [
-    # ...
-    '127.0.0.1',
-]
-
-# ...
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,23 +68,20 @@ WSGI_APPLICATION = 'chat_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'chat_db',
-        'USER': 'chat_user',
-        'PASSWORD': 'chat_password',
-        'HOST': 'db',
-        'PORT': 5432,
+        'NAME': os.environ.get("DB_NAME", "chat_db"),
+        'USER': os.environ.get("DB_USER", "chat_user"),
+        'PASSWORD': os.environ.get("DB_PASSWORD", "chat_password"),
+        'HOST': os.environ.get("DB_HOST", "localhost"),
+        'PORT': int(os.environ.get("DB_PORT", 5432)),
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -120,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -132,16 +111,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [BASE_DIR / "chat_app" / "static"]
 
+MIME_TYPES = {
+    ".css": "text/css",
+}
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ASGI_APPLICATION = "chat_project.asgi.application"

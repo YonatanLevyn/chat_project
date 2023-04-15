@@ -9,3 +9,4 @@ redis==4.5.3
 sqlparse==0.4.3
 gunicorn==20.1.0
 psycopg2-binary==2.9.1
+daphne==3.0.2
