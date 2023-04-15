@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: chat_password
   web:
     build: .
-    command: bash -c "./wait-for.sh db:5432 --timeout=60 -- daphne chat_project.asgi:application --bind 0.0.0.0:8000 -v2"
+    command: daphne -b 0.0.0.0 -p 8000 chat_project.asgi:application
     volumes:
       - .:/code
     ports:
@@ -18,3 +18,8 @@ services:
       - db
   redis:
     image: redis
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
