@@ -13,8 +13,8 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        # Represents the chat room's identifier
-        self.room_name = "chat_room"
+        # Retrieve the room name from the URL route parameter
+        self.room_name = self.scope['url_route']['kwargs']['room_name']
         # The group associated with that chat room
         self.room_group_name = f"chat_{self.room_name}"
 

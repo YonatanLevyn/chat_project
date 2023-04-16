@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 class="text-2xl font-bold mb-4">Welcome, {{ username }}! Let's chat</h1>
+  <h1 class="text-2xl font-bold mb-4">Welcome, {{ username }}! Let's chat in {{ room_name }}</h1>
   <div class="chat-room">
     <div id="chat-messages" class="messages">
     </div>
@@ -18,7 +18,8 @@
       const sendMessage = document.getElementById("send-message");
 
       const username = "{{ username }}";
-      const websocket = new WebSocket(`ws://${window.location.host}/ws/chat/`);
+      const roomName = "{{ room_name }}";
+      const websocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
 
       websocket.onmessage = (event) => {
         const data = JSON.parse(event.data);

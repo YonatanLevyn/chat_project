@@ -5,7 +5,8 @@ from . import views
 
 # Define the URL patterns for the app
 urlpatterns = [
-    path("chat/", views.chat, name="chat"),
+    path("", views.entry, name="entry"),
+    path("chat_room/", views.chat_room, name="chat_room"),
 ]
 
 # If in DEBUG mode, serve static files directly

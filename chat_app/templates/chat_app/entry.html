@@ -2,10 +2,12 @@
 
 {% block content %}
   <div class="entry-page">
-    <form class="entry-form" method="GET" action="{% url 'chat' %}">
+    <form class="entry-form" method="GET" action="{% url 'chat_room' %}">
       <h1>Welcome to Chat app</h1>
       <label for="username">Enter your username:</label>
       <input type="text" id="username" name="username" required>
+      <label for="room_name">Enter a room name:</label>
+      <input type="text" id="room_name" name="room_name" required>
       <button type="submit">Join</button>
     </form>
   </div>
