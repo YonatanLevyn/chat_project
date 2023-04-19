@@ -7,9 +7,9 @@ ChatConsumer extends the AsyncWebsocketConsumer class, which is an asynchronous 
 consumer that provides several methods for managing connections, receiving messages,
 and sending messages back to the clients.
 """
-
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
+from channels.db import database_sync_to_async
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -50,8 +50,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
             }
         )
 
+        # Save the message to the database
+        user = await self.get_user(username)
+        chat_room = await self.get_chat_room(self.room_name)
+
+        from .models import ChatRoom, Message
+        if user and chat_room:
+            await self.save_message(chat_room, user, message)
+
+
     async def chat_message(self, event):
-        # Receive a message from the chat group and send it to the WebSocket
         message = event["message"]
         username = event["username"]
 
@@ -59,3 +67,25 @@ class ChatConsumer(AsyncWebsocketConsumer):
             "message": message,
             "username": username
         }))
+
+
+    @database_sync_to_async
+    def get_user(self, username):
+        from django.contrib.auth.models import User
+        try:
+            return User.objects.get(username=username)
+        except User.DoesNotExist:
+            return None
+
+    @database_sync_to_async
+    def get_chat_room(self, room_name):
+        from .models import ChatRoom
+        try:
+            return ChatRoom.objects.get(name=room_name)
+        except ChatRoom.DoesNotExist:
+            return None
+
+    @database_sync_to_async
+    def save_message(self, chat_room, user, message):
+        from .models import Message
+        Message.objects.create(chat_room=chat_room, user=user, content=message)

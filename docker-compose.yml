@@ -7,6 +7,10 @@ services:
       POSTGRES_DB: chat_db
       POSTGRES_USER: chat_user
       POSTGRES_PASSWORD: chat_password
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   web:
     build: .
     command: daphne -b 0.0.0.0 -p 8000 chat_project.asgi:application
@@ -16,6 +20,10 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    environment:
+      DJANGO_SETTINGS_MODULE: chat_project.settings
+    env_file:
+      - .env
   redis:
     image: redis
     volumes:

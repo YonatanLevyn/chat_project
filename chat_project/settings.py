@@ -71,13 +71,14 @@ WSGI_APPLICATION = 'chat_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME", "chat_db"),
-        'USER': os.environ.get("DB_USER", "chat_user"),
-        'PASSWORD': os.environ.get("DB_PASSWORD", "chat_password"),
-        'HOST': os.environ.get("DB_HOST", "localhost"),
-        'PORT': int(os.environ.get("DB_PORT", 5432)),
+        'NAME': os.environ["DB_NAME"],
+        'USER': os.environ["DB_USER"],
+        'PASSWORD': os.environ["DB_PASSWORD"],
+        'HOST': os.environ["DB_HOST"],
+        'PORT': int(os.environ["DB_PORT"]),
     }
 }
+
 
 
 # Password validation
