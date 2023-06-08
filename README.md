@@ -45,14 +45,7 @@ docker-compose down
 ```
 
 
-## Contributing
+![Screenshot from 2023-06-08 02-34-35](https://github.com/YonatanLevyn/chat_project/assets/93859114/fd2c66ec-6284-4159-8cf5-d2538ea358f9)
 
-Please feel free to contribute to this project by submitting issues, pull requests, or providing feedback.
-
-For more information on each technology used, refer to their official documentation:
-
-- [Django](https://docs.djangoproject.com/en/stable/)
-- [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
-- [Daphne](https://github.com/django/daphne)
-- [Redis](https://redis.io/documentation)
+![Screenshot from 2023-06-08 02-33-13](https://github.com/YonatanLevyn/chat_project/assets/93859114/d230618e-b58f-4a27-94b0-e8e55d8e5288)
 
