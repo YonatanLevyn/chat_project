@@ -1,14 +1,6 @@
 # Chat App
 
-This is a simple real-time chat application built using Django, WebSockets, Daphne, and Redis.
-
-## Technologies
-
-- Django: A high-level Python web framework for building web applications
-- WebSockets: A communication protocol for real-time data exchange between clients and servers
-- Daphne: An ASGI server for running Django applications, enabling WebSocket support
-- Redis: An in-memory data store used as a message broker for Django Channels
-
+A simple real-time chat application built using Django, WebSockets, Daphne, and Redis. This project serves as a base application for any project that requires a chat feature. It provides a simple solution for real-time chat functionality.
 
 ## Getting Started with Docker
 
@@ -43,3 +35,5 @@ docker-compose down
 
 ![Screenshot from 2023-06-08 02-33-13](https://github.com/YonatanLevyn/chat_project/assets/93859114/d230618e-b58f-4a27-94b0-e8e55d8e5288)
 
+## Upcoming Improvements
+Looking ahead, I plan on implementing WebSocket Secure (WSS) using HAproxy. This will make the chat application more robust and ready-to-use for other projects.
