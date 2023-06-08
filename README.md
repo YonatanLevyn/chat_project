@@ -2,12 +2,6 @@
 
 This is a simple real-time chat application built using Django, WebSockets, Daphne, and Redis.
 
-## Features
-
-- Real-time chat
-- User authentication
-- Easy-to-use interface
-
 ## Technologies
 
 - Django: A high-level Python web framework for building web applications
