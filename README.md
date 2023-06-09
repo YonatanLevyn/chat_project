@@ -1,4 +1,4 @@
-# Chat App
+# Chat App with Django
 
 A simple real-time chat application built using Django, WebSockets, Daphne, and Redis. This project serves as a base application for any project that requires a chat feature. It provides a simple solution for real-time chat functionality.
 
@@ -6,26 +6,24 @@ A simple real-time chat application built using Django, WebSockets, Daphne, and 
 
 To run the chat application using Docker, follow these steps:
 
-1. Make sure you have Docker and Docker Compose installed on your system. If not, refer to the [official Docker documentation](https://docs.docker.com/engine/install/) for installation instructions.
-
-2. Clone the GitHub repository to your local machine:
+1. Clone the GitHub repository to your local machine:
 ```
 git clone https://github.com/YonatanLevyn/chat_project.git
 ```
 
-3. Navigate to the project directory:
+2. Navigate to the project directory:
 ```
 cd chat_project
 ```
 
-4. Build and run the Docker containers:
+3. Build and run the Docker containers:
 ```
 docker-compose up --build
 ```
 
-5. Once the containers are up and running, open a web browser and navigate to `http://localhost:8000` to access the chat application.
+4. Once the containers are up and running, open a web browser and navigate to `http://localhost:8000` to access the chat application.
 
-6. To stop the containers and remove the network and volumes defined in the `docker-compose.yml` file, run the following command in the terminal:
+5. To stop the containers and remove the network and volumes defined in the `docker-compose.yml` file, run the following command in the terminal:
 ```
 docker-compose down
 ```
